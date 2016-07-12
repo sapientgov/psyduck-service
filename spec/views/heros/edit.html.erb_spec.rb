@@ -14,7 +14,7 @@ RSpec.describe "heros/edit", type: :view do
 
     assert_select "form[action=?][method=?]", hero_path(@hero), "post" do
 
-      assert_select "input#hero_name,[name=?]", "hero[name,]"
+      assert_select "input#hero_name[name=?]", "hero[name]"
 
       assert_select "input#hero_age[name=?]", "hero[age]"
 
