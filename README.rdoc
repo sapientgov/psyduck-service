@@ -51,5 +51,7 @@ To run built-in Rails Unit test,
 Rspec:
    rspec spec (will test all files under spec folder)
    
-   
+]]></content>
+  <tabTrigger>readme</tabTrigger>
+</snippet>
    
