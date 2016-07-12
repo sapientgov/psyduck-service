@@ -18,76 +18,21 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe HerosController, type: :request do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Hero. As you add validations to Hero, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # HerosController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+RSpec.describe HerosController, type: :controller do
 
   describe "GET #index" do
     it "assigns all heros as @heros" do
-      hero = Hero.create! 
-      get '/heros.json', params: {}
+      hero = Hero.create
+      get :index
       expect(response).to be_success
     end
   end
 
   describe "GET #show" do
-    it "assigns the requested hero as @hero" do
-      hero = Hero.create! 
-      get '/heros.json', params: {id: hero.to_param}
+    it "assigns all heros as @heros" do
+      hero = Hero.create
+      get :index, id: hero
       expect(response).to be_success
     end
   end
-
-  describe "GET #edit" do
-    it "assigns the requested hero as @hero" do
-      hero = Hero.create! 
-      get '/heros.json', params: {id: hero.to_param}
-      expect(response).to be_success
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Hero" do
-        hero = Hero.create! 
-        expect {
-          post '/heros.json', hero.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-        }.to change(Hero, :count).by(1)
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      it "updates the requested hero" do
-        hero = Hero.create! 
-        put '/heros/' + hero.id + '.json', :hero => hero.attributes = { :age => 10 }
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested hero" do
-      hero = Hero.create! 
-      expect {
-        delete '/heros/' + hero.id + '.json'
-      }.to change(Hero, :count).by(-1)
-    end
-  end
-
 end
