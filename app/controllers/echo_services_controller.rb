@@ -1,10 +1,7 @@
 class EchoServicesController < ApplicationController
   def index
-    if params[:param] != nil
-      @param = params[:param]
-    end
     respond_to do |format|
-       format.json { render json: {param: @param}}
+      format.json { render json: params.except(:controller,:action,:format).each { |val| puts val } }
     end
   end
 end
