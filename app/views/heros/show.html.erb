@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name,:</strong>
+  <%= @hero.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @hero.age %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @hero.height %>
+</p>
+
+<%= link_to 'Edit', edit_hero_path(@hero) %> |
+<%= link_to 'Back', heros_path %>
