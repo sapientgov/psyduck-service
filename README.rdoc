@@ -1,7 +1,6 @@
-== README
-
-# All You Need!!!
+== All You Need!!!
 This is a small and simple prototype the USCIS Hackathon preparation on 7.13.2016.
+
 ## Installation
 RVM(Ruby Version Manager) requires gpg(GNU Privacy Guard)
    (ubuntu)sudo apt-get install gnupg
