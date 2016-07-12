@@ -50,5 +50,6 @@ group :development do
   
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
