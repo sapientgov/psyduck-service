@@ -1,7 +1,5 @@
 == README
 
-<snippet>
-  <content><![CDATA[
 # All You Need!!!
 This is a small and simple prototype the USCIS Hackathon preparation on 7.13.2016.
 ## Installation
@@ -51,7 +49,4 @@ To run built-in Rails Unit test,
 Rspec:
    rspec spec (will test all files under spec folder)
    
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
    
