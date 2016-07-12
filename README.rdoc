@@ -1,28 +1,55 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<snippet>
+  <content><![CDATA[
+# All You Need!!!
+This is a small and simple prototype the USCIS Hackathon preparation on 7.13.2016.
+## Installation
+RVM(Ruby Version Manager) requires gpg(GNU Privacy Guard)
+   (ubuntu)sudo apt-get install gnupg
+   (mac)brew install gpg
+   
+   After GPG is installed (or if it is already installed), install the security key for RVM:
+   $ command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+   
+Use RVM, the Ruby Version Manager, to install Ruby and manage your Rails versions.
+   \curl -L https://get.rvm.io | bash -s stable
+   
+   Refresh the terminal Env
+   $ source ~/.rvm/scripts/rvm
 
-Things you may want to cover:
+Install Ruby
+   rvm install ruby-2.3.1
+   gem update --system
+   
+Install Bundler
+   gem install bundler
 
-* Ruby version
+Install Nokogiri
+   Nokogiri is a gem that is a dependency for many other gems. Nokogiri is a gem that requires compilation for your specific operating system. 
+   
+   gem install nokogiri
+   
+Install Rails
+   rvm use ruby-2.3.1@rails-4.2.6
+   gem install rails --version=4.2.6
+   
+   
+## Run on local server(WebBrick)
+   
+After you clone the project from git, you need to install all gems using bundler.
+   bundle install
 
-* System dependencies
+Run local server
+   rails s
+   
+## Test
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+To run built-in Rails Unit test, 
+   rake test <test file(s)>
+   example: rake test test/controllers/echo_services_controller_test.rb
+Rspec:
+   rspec spec (will test all files under spec folder)
+   
+   
+   
