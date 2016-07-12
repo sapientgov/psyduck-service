@@ -12,11 +12,6 @@ class HerosController < ApplicationController
   def show
   end
 
-  # GET /heros/new
-  def new
-    @hero = Hero.new
-  end
-
   # GET /heros/1/edit
   def edit
   end

@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe HerosController, type: :controller do
+RSpec.describe HerosController, type: :request do
 
   # This should return the minimal set of attributes required to create a valid
   # Hero. As you add validations to Hero, be sure to
@@ -38,121 +38,55 @@ RSpec.describe HerosController, type: :controller do
 
   describe "GET #index" do
     it "assigns all heros as @heros" do
-      hero = Hero.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:heros)).to eq([hero])
+      hero = Hero.create! 
+      get '/heros.json', params: {}
+      expect(response).to be_success
     end
   end
 
   describe "GET #show" do
     it "assigns the requested hero as @hero" do
-      hero = Hero.create! valid_attributes
-      get :show, params: {id: hero.to_param}, session: valid_session
-      expect(assigns(:hero)).to eq(hero)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new hero as @hero" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:hero)).to be_a_new(Hero)
+      hero = Hero.create! 
+      get '/heros.json', params: {id: hero.to_param}
+      expect(response).to be_success
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested hero as @hero" do
-      hero = Hero.create! valid_attributes
-      get :edit, params: {id: hero.to_param}, session: valid_session
-      expect(assigns(:hero)).to eq(hero)
+      hero = Hero.create! 
+      get '/heros.json', params: {id: hero.to_param}
+      expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Hero" do
+        hero = Hero.create! 
         expect {
-          post :create, params: {hero: valid_attributes}, session: valid_session
+          post '/heros.json', hero.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
         }.to change(Hero, :count).by(1)
-      end
-
-      it "assigns a newly created hero as @hero" do
-        post :create, params: {hero: valid_attributes}, session: valid_session
-        expect(assigns(:hero)).to be_a(Hero)
-        expect(assigns(:hero)).to be_persisted
-      end
-
-      it "redirects to the created hero" do
-        post :create, params: {hero: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Hero.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved hero as @hero" do
-        post :create, params: {hero: invalid_attributes}, session: valid_session
-        expect(assigns(:hero)).to be_a_new(Hero)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {hero: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
       it "updates the requested hero" do
-        hero = Hero.create! valid_attributes
-        put :update, params: {id: hero.to_param, hero: new_attributes}, session: valid_session
-        hero.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested hero as @hero" do
-        hero = Hero.create! valid_attributes
-        put :update, params: {id: hero.to_param, hero: valid_attributes}, session: valid_session
-        expect(assigns(:hero)).to eq(hero)
-      end
-
-      it "redirects to the hero" do
-        hero = Hero.create! valid_attributes
-        put :update, params: {id: hero.to_param, hero: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(hero)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the hero as @hero" do
-        hero = Hero.create! valid_attributes
-        put :update, params: {id: hero.to_param, hero: invalid_attributes}, session: valid_session
-        expect(assigns(:hero)).to eq(hero)
-      end
-
-      it "re-renders the 'edit' template" do
-        hero = Hero.create! valid_attributes
-        put :update, params: {id: hero.to_param, hero: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+        hero = Hero.create! 
+        put '/heros/' + hero.id + '.json', :hero => hero.attributes = { :age => 10 }
+        expect(response).to be_success
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested hero" do
-      hero = Hero.create! valid_attributes
+      hero = Hero.create! 
       expect {
-        delete :destroy, params: {id: hero.to_param}, session: valid_session
+        delete '/heros/' + hero.id + '.json'
       }.to change(Hero, :count).by(-1)
-    end
-
-    it "redirects to the heros list" do
-      hero = Hero.create! valid_attributes
-      delete :destroy, params: {id: hero.to_param}, session: valid_session
-      expect(response).to redirect_to(heros_url)
     end
   end
 
