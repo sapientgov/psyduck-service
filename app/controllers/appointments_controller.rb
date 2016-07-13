@@ -52,12 +52,10 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     apptToUpdate = appointment_params
-    logger.debug("432432421 : " +  @appointment.time + ": " + apptToUpdate[:time])
     if (@appointment.date != apptToUpdate[:date] || @appointment.time != apptToUpdate[:time] || @appointment.office != apptToUpdate[:office]) && 
       validateNumberOfSlots(apptToUpdate[:date], apptToUpdate[:time], apptToUpdate[:office]) 
       respond_to do |format|
         if @appointment.update!(apptToUpdate)
-          logger.debug("***")
           format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
           format.json { render :show, status: :ok, location: @appointment }
         else
@@ -66,7 +64,6 @@ class AppointmentsController < ApplicationController
         end
       end
     else
-      logger.debug("&&&")
       respond_to do |format|
         format.html { render :edit, notice: 'slots are full.' }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
