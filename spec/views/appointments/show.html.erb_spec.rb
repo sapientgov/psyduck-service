@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "appointments/show", type: :view do
   before(:each) do
     @appointment = assign(:appointment, Appointment.create!(
+      :date => "Date",
       :time => "Time",
       :firstname => "First Name",
       :lastname => "Last Name",

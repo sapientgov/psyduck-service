@@ -25,13 +25,20 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new }
+    
+    if validateNumberOfSlots(@appointment.date, @appointment.time, @appointment.office) 
+      respond_to do |format|
+        if @appointment.save
+          format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+          format.json { render :show, status: :created, location: @appointment }
+        else
+          format.html { render :new }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to new_appointment_path, notice: 'slots are full.' }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
@@ -40,15 +47,28 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    respond_to do |format|
-      if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @appointment }
-      else
-        format.html { render :edit }
+    apptToUpdate = appointment_params
+    logger.debug("432432421 : " +  @appointment.time + ": " + apptToUpdate[:time])
+    if (@appointment.date != apptToUpdate[:date] || @appointment.time != apptToUpdate[:time] || @appointment.office != apptToUpdate[:office]) && 
+      validateNumberOfSlots(apptToUpdate[:date], apptToUpdate[:time], apptToUpdate[:office]) 
+      respond_to do |format|
+        if @appointment.update!(apptToUpdate)
+          logger.debug("***")
+          format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
+          format.json { render :show, status: :ok, location: @appointment }
+        else
+          format.html { render :edit }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      logger.debug("&&&")
+      respond_to do |format|
+        format.html { render :edit, notice: 'slots are full.' }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /appointments/1
@@ -60,6 +80,16 @@ class AppointmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def validateNumberOfSlots(date, time, office) 
+    allAppts = Appointment.where(date: date, time: time, office: office)
+    puts allAppts.class
+    if allAppts && allAppts.length >= 2
+      return false
+    end
+    
+    return true
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +99,6 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:time, :firstname, :lastname, :office, :phone, :email, :staff)
+      params.require(:appointment).permit(:date, :time, :firstname, :lastname, :office, :phone, :email, :staff)
     end
 end
