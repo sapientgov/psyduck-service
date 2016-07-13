@@ -8,6 +8,12 @@ A boilerplate set of ruby services.
 
 ## API
 ```
+GET /applications.json
+GET /applications.json?office=Washington&date=2016-07-01
+
+GET /offices.json
+
+GET /staff.json
 ```
 
 ## Running the server locally
