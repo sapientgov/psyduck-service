@@ -7,7 +7,7 @@ Rails.application.initialize!
 Rails.application.configure do
   # CORS headers for REST services
   config.action_dispatch.default_headers.merge!({
-	"Access-Control-Allow-Methods" => "GET,POST,PUT,DELETE,OPTIONS",
+	"Access-Control-Allow-Methods" => "GET, PUT, POST, DELETE, HEAD, OPTIONS",
     "Access-Control-Allow-Origin" => "*",
     "Access-Control-Request-Method" => "*"
   })
