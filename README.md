@@ -1,5 +1,5 @@
 # Psyduck
-A boilerplate set or ruby services.
+A boilerplate set of ruby services.
 
 ## Prerequisites
 * Ruby 2.3.1
