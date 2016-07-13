@@ -1,6 +1,5 @@
 class Appointment
   include Mongoid::Document
-  include Mongoid::Timestamps
   field :date, type: String
   field :time, type: String
   field :firstname, type: String
