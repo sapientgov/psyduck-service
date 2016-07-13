@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :appointments
   resources :heros
   resources :resources, :echo_services
+  
+  post 'validate_passwords' => 'validate_passwords#check'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

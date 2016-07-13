@@ -18,21 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe HerosController, type: :controller do
+RSpec.describe ValidatePasswordsController, type: :controller do
 
-  describe "GET #index" do
-    it "assigns all heros as @heros" do
-      hero = Hero.create
-      get :index
-      expect(response).to be_success
-    end
-  end
 
-  describe "GET #show" do
-    it "assigns all heros as @heros" do
-      hero = Hero.create
-      get :index, id: hero
-      expect(response).to be_success
-    end
-  end
 end
