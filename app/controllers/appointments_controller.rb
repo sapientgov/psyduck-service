@@ -4,8 +4,12 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    if params[:office] 
+    if params[:office] && params[:date]
+      @appointments = Appointment.where(office: params[:office], date: params[:date])
+    elsif params[:office] 
       @appointments = Appointment.where(office: params[:office])
+    elsif params[:date] 
+      @appointments = Appointment.where(date: params[:date])
     else
       @appointments = Appointment.all
     end
