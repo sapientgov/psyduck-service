@@ -6,7 +6,8 @@
   <thead>
     <tr>
       <th>Time</th>
-      <th>Person</th>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Office</th>
       <th>Phone</th>
       <th>Email</th>
@@ -19,7 +20,8 @@
     <% @appointments.each do |appointment| %>
       <tr>
         <td><%= appointment.time %></td>
-        <td><%= appointment.person %></td>
+        <td><%= appointment.firstname %></td>
+        <td><%= appointment.lastname %></td>
         <td><%= appointment.office %></td>
         <td><%= appointment.phone %></td>
         <td><%= appointment.email %></td>

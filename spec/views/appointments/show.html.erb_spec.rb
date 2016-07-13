@@ -4,7 +4,8 @@ RSpec.describe "appointments/show", type: :view do
   before(:each) do
     @appointment = assign(:appointment, Appointment.create!(
       :time => "Time",
-      :person => "Person",
+      :firstname => "First Name",
+      :lastname => "Last Name",
       :office => "Office",
       :phone => "Phone",
       :email => "Email",
@@ -15,7 +16,8 @@ RSpec.describe "appointments/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/Time/)
-    expect(rendered).to match(/Person/)
+    expect(rendered).to match(/First Name/)
+    expect(rendered).to match(/Last Name/)
     expect(rendered).to match(/Office/)
     expect(rendered).to match(/Phone/)
     expect(rendered).to match(/Email/)
