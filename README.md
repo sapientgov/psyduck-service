@@ -6,6 +6,10 @@ A boilerplate set of ruby services.
 * Rails 4.2.5
 * MongoDB 3.2.7
 
+## API
+```
+```
+
 ## Running the server locally
 1. build with `bundle install`
 2. create a mongodb database: `mkdir -p ~/data/db`
