@@ -1,51 +1,20 @@
-== All You Need!!!
-This is a small and simple prototype the USCIS Hackathon preparation on 7.13.2016.
+# Psyduck
+A boilerplate set or ruby services.
 
-## Installation
-RVM(Ruby Version Manager) requires gpg(GNU Privacy Guard)
-   (ubuntu)sudo apt-get install gnupg
-   (mac)brew install gpg
-   
-   After GPG is installed (or if it is already installed), install the security key for RVM:
-   $ command curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-   
-Use RVM, the Ruby Version Manager, to install Ruby and manage your Rails versions.
-   \curl -L https://get.rvm.io | bash -s stable
-   
-   Refresh the terminal Env
-   $ source ~/.rvm/scripts/rvm
+## Prerequisites
+* Ruby 2.3.1
+* Rails 4.2.5
+* MongoDB 3.2.7
 
-Install Ruby
-   rvm install ruby-2.3.1
-   gem update --system
-   
-Install Bundler
-   gem install bundler
+## Running the server locally
+1. build with `bundle install`
+2. create a mongodb database: `mkdir -p ~/data/db`
+3. start mongodb `mongod --dbpath ~/data/db`
+4. run `rails server -p 8080 -b 0.0.0.0`
+5. point your browser to: http://localhost:8080/index.html
 
-Install Nokogiri
-   Nokogiri is a gem that is a dependency for many other gems. Nokogiri is a gem that requires compilation for your specific operating system. 
-   
-   gem install nokogiri
-   
-Install Rails
-   rvm use ruby-2.3.1@rails-4.2.6
-   gem install rails --version=4.2.6
-   
-   
-## Run on local server(WebBrick)
-   
-After you clone the project from git, you need to install all gems using bundler.
-   bundle install
+## Unit Tests
+To run the rspec unit tests use `rspec spec`.
 
-Run local server
-   rails s
-   
-## Test
+Code coverage reports will be generated in the `coverage/` directory.
 
-To run built-in Rails Unit test, 
-   rake test <test file(s)>
-   example: rake test test/controllers/echo_services_controller_test.rb
-Rspec:
-   rspec spec (will test all files under spec folder)
-   
-   
