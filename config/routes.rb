@@ -61,6 +61,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  match '*path', via: [:options], to:  lambda {|_| [204, {'Access-Control-Allow-Headers' => 'Content-Type', 'Access-Control-Allow-Origin' => '*', 'Content-Type' => 'text/plain'}, []]}
+  match '*path', via: [:options], to:  lambda {|_| [204, {'Access-Control-Allow-Methods' => 'GET, PUT, POST, DELETE, HEAD, OPTIONS', 'Access-Control-Allow-Headers' => 'Content-Type', 'Access-Control-Allow-Origin' => '*', 'Content-Type' => 'text/plain'}, []]}
 end
 
