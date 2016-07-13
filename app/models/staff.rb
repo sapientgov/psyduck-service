@@ -4,4 +4,5 @@ class Staff
   field :login, type: String
   field :password, type: String
   field :admin, type: Mongoid::Boolean
+  field :office, type: String
 end
