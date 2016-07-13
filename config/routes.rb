@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :offices
+  resources :staffs
+  resources :appointments
   resources :heros
   resources :resources, :echo_services
   # The priority is based upon order of creation: first created -> highest priority.
