@@ -4,7 +4,11 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all
+    if params[:office] 
+      @appointments = Appointment.where(office: params[:office])
+    else
+      @appointments = Appointment.all
+    end
   end
 
   # GET /appointments/1
