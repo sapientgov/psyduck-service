@@ -14,6 +14,8 @@ GET /applications.json?office=Washington&date=2016-07-01
 GET /offices.json
 
 GET /staff.json
+
+POST /validate_passwords.json
 ```
 
 ## Running the server locally
